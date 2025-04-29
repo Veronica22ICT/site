@@ -1,11 +1,17 @@
 from django.db import models
 
+class Category(models.Model):
+    name = models.CharField(max_length=20, unique=True)
+
+    def __str__(self):
+        return self.name
+
 class Knife(models.Model):
-    name = models.CharField(max_length=100)
+    name = models.CharField(max_length=70)
     image = models.ImageField(upload_to='knives/', null=False, default='path/to/default_image')
     description = models.TextField()
-    types = models.CharField(max_length=100)
-    mechanism = models.CharField(max_length=100)
+    category = models.ForeignKey(Category, on_delete=models.SET_NULL, null=True, blank=True)
+    mechanism = models.CharField(max_length=20,null=True, blank=True)
     price = models.IntegerField()
     available = models.IntegerField()
     post_office = models.CharField(max_length=50, null=True, blank=True)
@@ -17,8 +23,8 @@ class Knife(models.Model):
 
 
 class Care (models.Model):
-    name = models.CharField(max_length=100)
-    image = models.ImageField(upload_to='cares/', null=False, default='path/to/default_image.jpg')
+    name = models.CharField(max_length=45)
+    image = models.ImageField(upload_to='knives/', null=False, default='path/to/default_image')
     description = models.TextField()
     price = models.IntegerField()
     available = models.IntegerField()
@@ -27,8 +33,8 @@ class Care (models.Model):
 
 
 class Repair (models.Model):
-    name = models.CharField(max_length=100)
-    image = models.ImageField(upload_to='repairs/', null=False, default='path/to/default_image.jpg')
+    name = models.CharField(max_length=50)
+    image = models.ImageField(upload_to='knives/', null=False, default='path/to/default_image')
     description = models.TextField()
     price = models.IntegerField()
     available = models.IntegerField()

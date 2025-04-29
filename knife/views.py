@@ -1,4 +1,15 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect
+from .forms import KnifeForm
+
+def create_knife(request):
+    if request.method == 'POST':
+        form = KnifeForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            return redirect('success_page')
+    else:
+        form = KnifeForm()
+    return render(request, 'knife_form.html', {'form': form})
 
 def home(request):
     context = {'title': 'Home Page'}
