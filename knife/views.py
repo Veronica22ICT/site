@@ -1,5 +1,24 @@
-from django.shortcuts import render,redirect
+from django.shortcuts import render, redirect
 from .forms import KnifeForm
+from .models import Knife
+
+def home(request):
+    return render(request, 'home.html', {'title': 'Home Page'})
+
+def info(request):
+    return render(request, 'info.html', {'title': 'Info Page'})
+
+def types(request):
+    knives = Knife.objects.all()
+    return render(request, 'knife/types.html', {'title': 'Types Page', 'knives': knives})
+
+
+def advice(request):
+    return render(request, 'advice.html')
+
+def knife_list(request):
+    knives = Knife.objects.all()
+    return render(request, 'knife/types.html', {'knives': knives})
 
 def create_knife(request):
     if request.method == 'POST':
@@ -10,18 +29,3 @@ def create_knife(request):
     else:
         form = KnifeForm()
     return render(request, 'knife_form.html', {'form': form})
-
-def home(request):
-    context = {'title': 'Home Page'}
-    return render(request, 'home.html',context)
-def info(request):
-    context = {'title': 'Info Page'}
-    return render(request, 'info.html',context)
-def types(request):
-    context = {'title': 'Types Page'}
-    return render(request, 'types.html',context)
-def links(request):
-    context = {'title': 'Links Page'}
-    return render(request, 'links.html',context)
-def advice(request):
-    return render(request, 'advice.html')

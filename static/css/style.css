@@ -1,0 +1,32 @@
+/* static/css/style.css */
+body {
+    font-family: 'Segoe UI', sans-serif;
+    background-color: #f7f7f7;
+    color: #333;
+}
+
+h1, h2 {
+    font-weight: 600;
+}
+
+footer {
+    font-size: 0.85rem;
+    background-color: #222;
+    color: white;
+}
+nav {
+    background-color: #333; /* Темний фон */
+    padding: 10px 20px;
+}
+
+nav a {
+    color: white; /* Білий текст */
+    text-decoration: none;
+    margin-right: 15px;
+    font-weight: bold;
+}
+
+nav a:hover {
+    text-decoration: underline;
+    color: #ddd; /* Колір при наведенні */
+}
