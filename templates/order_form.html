@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Оформлення замовлення{% endblock %}
+
+{% block content %}
+<div class="container my-5">
+    <h2>Оформлення замовлення на: {{ product.name }}</h2>
+    <p>Категорія: {{ category }} | Ціна: {{ product.price }} грн</p>
+
+    <form method="post" class="mt-4">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-success">Підтвердити замовлення</button>
+    </form>
+</div>
+{% endblock %}

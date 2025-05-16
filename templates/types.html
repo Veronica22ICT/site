@@ -3,10 +3,17 @@
 {% extends 'base.html' %}
 {% load static %}
 
-{% block title %}Типи ножів{% endblock %}
+{% block title %}Магазин{% endblock %}
 
 {% block content %}
-<h2 class="mb-4 text-center">Наш асортимент ножів</h2>
+
+    <div class="container my-4">
+    <div class="d-flex justify-content-center gap-3 flex-wrap">
+        <a href="{% url 'cares' %}" class="btn btn-outline-dark">Догляд</a>
+        <a href="{% url 'repairs' %}" class="btn btn-outline-dark">Ремонт</a>
+    </div>
+</div>
+<h2 id="knives" class="mb-4 text-center">Ножі</h2>
 
 <div class="row row-cols-1 row-cols-md-3 g-4">
     {% for knife in knives %}
@@ -21,10 +28,11 @@
                 <h5 class="card-title">{{ knife.name }}</h5>
                 <p class="card-text text-muted small">{{ knife.description|truncatechars:100 }}</p>
                 <p class="card-text text-success fw-bold">{{ knife.price }} грн</p>
-                <a href="#" class="btn btn-outline-primary mt-auto">Купити</a>
+                <a href="{% url 'knife_detail' knife.id %}" class="btn btn-outline-primary mt-auto">Детальніше</a>
             </div>
         </div>
     </div>
     {% endfor %}
 </div>
+
 {% endblock %}

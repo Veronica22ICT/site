@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Ремонт{% endblock %}
+
+{% block content %}
+    <div class="container my-4">
+    <div class="d-flex justify-content-center gap-3 flex-wrap">
+        <a href="{% url 'knives' %}" class="btn btn-outline-dark">Ножі</a>
+        <a href="{% url 'cares' %}" class="btn btn-outline-dark">Догляд</a>
+        <a href="{% url 'repairs' %}" class="btn btn-outline-dark">Ремонт</a>
+    </div>
+</div>
+<div class="container my-4">
+    <h2 class="text-center mb-4">Ремонт</h2>
+
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+        {% for repair in repairs %}
+        <div class="col">
+            <div class="card h-100 shadow-sm border-0">
+                {% if repair.image %}
+                <img src="{{ repair.image.url }}" class="card-img-top" alt="{{ repair.name }}">
+                {% else %}
+                <img src="{% static 'img' %}" class="card-img-top" alt="Ремонт">
+                {% endif %}
+                <div class="card-body d-flex flex-column">
+                    <h5 class="card-title">{{ repair.name }}</h5>
+                    <p class="card-text text-muted small">{{ repair.description|truncatechars:100 }}</p>
+                     <a href="{% url 'repair_detail' repair.id %}" class="btn btn-outline-primary mt-auto">Детальніше</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

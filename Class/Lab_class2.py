@@ -4,6 +4,7 @@ from datetime import datetime
 class Veronika:
     def __init__(self, first_name=None, last_name=None, birth_year=None):
         self.first_name = first_name
+        assert isinstance(last_name, object)
         self.last_name = last_name
         self.birth_year = birth_year
 

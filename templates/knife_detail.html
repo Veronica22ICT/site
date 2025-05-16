@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="uk">
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Деталі {{ knife.name }}{% endblock %}
+
+{% block content %}
+    <div class="container my-4">
+        <div class="card">
+            {% if knife.image %}
+            <img src="{{ knife.image.url }}" class="card-img-top img-fluid" alt="{{ knife.name }}" style="max-width: 200px; height: auto;">
+            {% else %}
+            <img src="{% static 'img' %}" class="card-img-top img-fluid" alt="Ніж" style="max-width: 200px; height: auto;">
+            {% endif %}
+            <div class="card-body">
+                <p class="card-text text-success fw-bold">{{ knife.price }} грн</p>
+                <h5 class="card-title">{{ knife.name }}</h5>
+                <p class="card-text">{{ knife.description }}</p>
+                <a href="{% url 'make_order' 'knife' knife.id %}" class="btn btn-primary mt-3">Купити</a>
+            </div>
+        </div>
+    </div>
+{% endblock %}

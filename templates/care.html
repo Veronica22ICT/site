@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Догляд{% endblock %}
+
+{% block content %}
+    <div class="container my-4">
+    <div class="d-flex justify-content-center gap-3 flex-wrap">
+        <a href="{% url 'knives' %}" class="btn btn-outline-dark">Ножі</a>
+        <a href="{% url 'cares' %}" class="btn btn-outline-dark">Догляд</a>
+        <a href="{% url 'repairs' %}" class="btn btn-outline-dark">Ремонт</a>
+    </div>
+</div>
+<div class="container my-4">
+    <h2 class="text-center mb-4">Догляд</h2>
+
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+        {% for care in cares %}
+        <div class="col">
+            <div class="card h-100 shadow-sm border-0">
+                {% if care.image %}
+                <img src="{{ care.image.url }}" class="card-img-top" alt="{{ care.name }}">
+                {% else %}
+                <img src="{% static 'img' %}" class="card-img-top" alt="Догляд">
+                {% endif %}
+                <div class="card-body d-flex flex-column">
+                    <h5 class="card-title">{{ care.name }}</h5>
+                    <p class="card-text text-muted small">{{ care.description|truncatechars:100 }}</p>
+                    <a href="{% url 'care_detail' care.id %}" class="btn btn-outline-primary mt-auto">Детальніше</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

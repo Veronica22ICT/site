@@ -35,9 +35,19 @@
 <footer class="bg-dark text-white text-center py-3">
     <div class="container d-flex flex-column align-items-center">
         <small>© 2025 Мій сайт. Всі права захищені.</small>
-        <small>тел.: +380(686437484)</small>
-        <small>Email: matvijchuk09072008@gmail.com</small>
-        <small>Telegram: https://t.me/Wolf_2580</small>
+        {% for contact in contacts %}
+            {% if contact.phone %}
+                <small>тел.: {{ contact.phone }}</small>
+            {% endif %}
+            {% if contact.email %}
+                <small>Email: {{ contact.email }}</small>
+            {% endif %}
+            {% if contact.telegram_link %}
+                <small>Telegram: <a href="{{ contact.telegram_link }}" class="text-white">{{ contact.telegram_link }}</a></small>
+            {% endif %}
+        {% empty %}
+            <small>Telegram: @Wolf_2580</small>
+        {% endfor %}
     </div>
 </footer>
 

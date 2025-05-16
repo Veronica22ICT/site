@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="uk">
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Деталі догляду {{ care.name }}{% endblock %}
+
+{% block content %}
+    <div class="container my-4">
+        <div class="card">
+            {% if care.image %}
+            <img src="{{ care.image.url }}" class="card-img-top img-fluid" alt="{{ care.name }}" style="max-width: 200px; height: auto;">
+            {% else %}
+            <img src="{% static 'img' %}" class="card-img-top img-fluid" alt="Догляд" style="max-width: 200px; height: auto;">
+            {% endif %}
+            <div class="card-body">
+                <p class="card-text text-success fw-bold">{{ care.price }} грн</p>
+                <h5 class="card-title">{{ care.name }}</h5>
+                <p class="card-text">{{ care.description }}</p>
+                <a href="{% url 'make_order' 'care' care.id %}" class="btn btn-primary mt-3">Купити</a>
+            </div>
+        </div>
+    </div>
+{% endblock %}

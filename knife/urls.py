@@ -9,8 +9,14 @@ urlpatterns = [
     path('', views.home, name='home'),
     path('info/', views.info, name="info"),
     path('types/', views.types, name='types'),
-    path('types/', views.knife_list, name='knife_list'),
     path('advice/', views.advice, name='advice'),
+    path('knives/', views.knives_view, name='knives'),
+    path('cares/', views.cares_view, name='cares'),
+    path('repairs/', views.repairs_view, name='repairs'),
+    path('knife/<int:id>/', views.knife_detail, name='knife_detail'),
+    path('repair/<int:id>/', views.repair_detail, name='repair_detail'),
+    path('care/<int:id>/', views.care_detail, name='care_detail'),
+    path('order/<str:category>/<int:product_id>/', views.make_order, name='make_order'),
 
 ]
 
